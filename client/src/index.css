@@ -1,13 +1,77 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  height: 100%;
+}
+/* body {
+  min-height: 100%;
+  margin: 0;
+} */
+body {
+  font-family:
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+   Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); 
+}
+ 
+header {
+  font-size: xx-large;
+  text-align: center;
+  text-decoration-style: wavy;
+  margin: 40px;
+}
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #333;
+  align-items: center;
+  justify-content: center;
+}
+.questions {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.answers {
+ display: grid;
+ grid-template-columns: auto auto;
+ grid-gap: 10px;
+}
+
+.false {
+background-color: red;
+}
+
+.true {
+  background-color: green;
+}
+
+p {
+  padding: 20px;
+  
+  align-items: center;
+  font-weight: bolder !important;
+  background-color: white;
+  border: 3px solid darkBlue;
+  color: darkblue;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s, box-shadow .5s;
+}
+
+p:hover {
+  background-color: darkblue;
+  color: white;
+  box-shadow: 0 0px 0px 6px rgba(0, 0, 0, 0.3);
 }

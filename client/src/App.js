@@ -1,77 +1,59 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import logo from './logo.svg';
+import { Questionaire } from './components'
+// import logo from './logo.svg';
+import './index.css';
 
-import './App.css';
+function App () {
 
-class App extends Component {
-  state = {
-    response: '',
-    post: '',
-    responseToPost: '',
-  };
+  const [questions, setQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [score, setScore] = useState(0)
+  const [showAnswers, setShowAnswers] = useState(false)
+
+  useEffect(() => {
+    async function apiFetcher() {
+      const response = await fetch('/api/hello');
+      const body = await response.json();
+      if (response.status !== 200) throw Error(body.message);
+      setQuestions(body.results)
+    }
+    apiFetcher();
+  },[])
+
   
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
+  const handleAnswer = (answer) => {
+    if(answer === questions[currentIndex].correct_answer) {
+      setScore(score + 1);
+    }
+    setShowAnswers(true);
+    // const newIndex = currentIndex + 1
+    // setCurrentIndex(newIndex)
+  };
+
+  const clickHandler = () => {
+    setShowAnswers(false);
+    setCurrentIndex(currentIndex + 1)
   }
+ 
+  return questions.length > 0 ? (
+    <div className="App">
+      {currentIndex >= questions.length ? (
+        <h1>Your score was {score}
+        </h1>
+      ) : (
+      
+      <Questionaire 
+      body={questions[currentIndex]} 
+      clickHandler={clickHandler}
+      showAnswers= {showAnswers}
+      handleAnswer= {handleAnswer} />
+      )}
+    </div>
+  ) : (
+    <h1>Loading...</h1>
   
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    
-    return body;
-  };
-  
-  handleSubmit = async e => {
-    e.preventDefault();
-    const response = await fetch('/api/world', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ post: this.state.post }),
-    });
-    const body = await response.text();
-    
-    this.setState({ responseToPost: body });
-  };
-  
-render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <p>{this.state.response}</p>
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <strong>Post to Server:</strong>
-          </p>
-          <input
-            type="text"
-            value={this.state.post}
-            onChange={e => this.setState({ post: e.target.value })}
-          />
-          <button type="submit">Submit</button>
-        </form>
-        <p>{this.state.responseToPost}</p>
-      </div>
-    );
-  }
+  );
 }
 
 export default App;

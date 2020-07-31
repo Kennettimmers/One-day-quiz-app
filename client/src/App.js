@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
 import { Questionaire } from './components'
-// import logo from './logo.svg';
 import './index.css';
 
 function App () {
@@ -21,14 +19,11 @@ function App () {
     apiFetcher();
   },[])
 
-  
   const handleAnswer = (answer) => {
     if(answer === questions[currentIndex].correct_answer) {
       setScore(score + 1);
     }
     setShowAnswers(true);
-    // const newIndex = currentIndex + 1
-    // setCurrentIndex(newIndex)
   };
 
   const clickHandler = () => {
@@ -39,7 +34,7 @@ function App () {
   return questions.length > 0 ? (
     <div className="App">
       {currentIndex >= questions.length ? (
-        <h1>Your score was {score}
+        <h1 className="final">Your final score was {score}!
         </h1>
       ) : (
       
@@ -51,8 +46,7 @@ function App () {
       )}
     </div>
   ) : (
-    <h1>Loading...</h1>
-  
+    <h1 className="loader">Loading...</h1>
   );
 }
 

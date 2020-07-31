@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
 const port = process.env.PORT || 5000;
 const fetch = require('node-fetch');
@@ -20,7 +19,7 @@ app.get('/api/hello', async (req, res) => {
 app.post('/api/world', (req, res) => {
   console.log(req.body);
   res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
+    'hello world',
   );
 });
 

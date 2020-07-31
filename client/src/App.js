@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Questionaire } from './components'
+import { Quiz } from './components'
 import './index.css';
 
 function App () {
@@ -38,7 +38,7 @@ function App () {
         </h1>
       ) : (
       
-      <Questionaire 
+      <Quiz 
       body={questions[currentIndex]} 
       clickHandler={clickHandler}
       showAnswers= {showAnswers}

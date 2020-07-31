@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Questionaire = ({
+const Quiz = ({
   showAnswers,
   clickHandler,
   handleAnswer,
@@ -37,4 +37,4 @@ const Questionaire = ({
   </div>
 )};
 
-export default Questionaire;
+export default Quiz;

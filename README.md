@@ -16,5 +16,5 @@ Simple quiz app that uses an api to fetch data.
 3. Use [trivia](https://opentdb.com/api.php?amount=10&category=12&difficulty=easy&type=multiple) to get the questions
    1. Implement API to get the questions
    2. Update questions based on their setindex
-5. nice extras
-   2. point to custom url
+4. nice extras
+   1. point to custom url

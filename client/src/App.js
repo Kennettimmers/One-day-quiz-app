@@ -17,7 +17,7 @@ function App () {
       setQuestions(body.results)
     }
     apiFetcher();
-  },[])
+  },[]) 
 
   const handleAnswer = (answer) => {
     if(answer === questions[currentIndex].correct_answer) {
